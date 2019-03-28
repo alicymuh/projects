@@ -17,10 +17,7 @@ namespace Musics_App
         public string Album { get; set; }
         public string Filepath { get; set; }
         public string DisplayName { get; set; }
-       // public string Album { get; set; }
-        //public TimeSpan Duration { get; set; }
-        //public string MusicPath { get; set; }
-
+      
 
         public static async Task<ICollection<Music>> getMusic()
         {

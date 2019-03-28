@@ -35,7 +35,6 @@ namespace Musics_App
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            //GridView.DataContext = await Music.getMusic();
             DataContext = await Music.getMusic();
         }
 
@@ -43,7 +42,7 @@ namespace Musics_App
         {
             Windows.Storage.StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
             Windows.Storage.StorageFile file = await folder.GetFileAsync("10,000 Reasons (Bless the Lord) - Matt Redman (Best Worship Song Ever) (with Lyrics).mp3");
-           // player.Source = MediaSource.CreateFromStorageFile(file);
+          
 
         }
 
@@ -51,10 +50,7 @@ namespace Musics_App
         {
             Windows.Storage.StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
             Windows.Storage.StorageFile file = await folder.GetFileAsync("10,000 Reasons (Bless the Lord) - Matt Redman (Best Worship Song Ever) (with Lyrics).mp3");
-           // player.Source = MediaSource.CreateFromStorageFile(file);
-           // player.Play();
-
-
+          
 
         }
 
@@ -76,16 +72,12 @@ namespace Musics_App
         private async void ImageGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             Music clicked = (Music)e.ClickedItem;
-
-            //MediaElement player = new MediaElement();
-            // Uri uri_file = new Uri(clicked.Filepath);
-            //player.Source = MediaSource.CreateFromUri(new Uri(clicked.Filepath));
-            //player.Play();
             var namedis = clicked.DisplayName;
-           Windows.Storage.StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
+            Windows.Storage.StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
             Windows.Storage.StorageFile file = await folder.GetFileAsync(clicked.DisplayName+Path.GetExtension(clicked.Filepath));
             player.Source = MediaSource.CreateFromStorageFile(file);
             player.Play();
+          
         }
     }
 }

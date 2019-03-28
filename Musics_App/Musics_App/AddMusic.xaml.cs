@@ -36,24 +36,20 @@ namespace Musics_App
             FileOpenPicker picker = new FileOpenPicker();
             picker.SuggestedStartLocation = PickerLocationId.MusicLibrary;
             string[] audioExtensions = new string[] { ".wma", ".mp3", ".mp2", ".aac", ".adt", ".adts", ".m4a" };
-            var Title = "";
+            //var Title = "";
 
             foreach (string extension in audioExtensions)
             {
                 picker.FileTypeFilter.Add(extension);
             }
+
             StorageFile file = await picker.PickSingleFileAsync();
-            StorageFolder assets = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
-            //StorageFile sampleFile = await assets.CreateFileAsync("sample.txt",NameCollisionOption.ReplaceExisting);
+            StorageFolder assets = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");            
             await file.CopyAsync(assets, file.DisplayName + Path.GetExtension(file.Path), NameCollisionOption.ReplaceExisting);
-            //StorageFolder storageFolder = KnownFolders.MusicLibrary;
-            //StorageFile file_song = await storageFolder.CreateFileAsync(file.Path, CreationCollisionOption.ReplaceExisting);
             MusicProperties musicProperties = await file.Properties.GetMusicPropertiesAsync();
 
-
-
+            var Title = musicProperties.Title;
             var Artist = musicProperties.Artist;
-             
             var Album = musicProperties.Album;
             var songName = file.DisplayName;
             var FilePath = file.Path;
@@ -74,4 +70,3 @@ namespace Musics_App
         }
     }
 }
-{

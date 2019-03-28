@@ -22,8 +22,7 @@ namespace Musics_App
                 
             }
 
-          //  await FileIO.AppendTextAsync(file, content+Environment.NewLine);
-         
+                 
         }
 
         public static async Task<string> ReadTextFileAsync(string filename)
